@@ -63,6 +63,33 @@ const data = [
   },
 ];
 
+
+//----------------------CAPTURANDO EVENTO-----------------
+
+let btnVitrine = document.querySelector(".produtos")
+let carrinho   = document.querySelector(".carrinho ul")
+
+btnVitrine.addEventListener("click", adicionarCarrinho)
+
+console.log(btnVitrine);
+
+function adicionarCarrinho(event){
+  
+  let checkBtn = event.target
+  if (checkBtn.tagName == "BUTTON"){
+   
+      
+      let produto = checkBtn.closest("li").cloneNode(true)
+      console.log(produto);
+      carrinho.appendChild(produto)
+  }
+}
+
+
+
+
+
+
 //---------------ACESSANDO OS PRODUTOS-------------------
 
 let cardProduto = document.querySelector(".produtos")
@@ -93,6 +120,8 @@ function criarCardProduto (item){
   let value       = item.value
   let tag         = item.tag
 
+  console.log(id);
+
   let tagLi           = document.createElement("li")
   let tagImg          = document.createElement("img")
   let tagPTag         = document.createElement("p")
@@ -110,12 +139,21 @@ function criarCardProduto (item){
   tagH3.innerText             = nameItem
   tagBtn.innerText            = "Adicionar ao carrinho"
 
+
+
+//---------ADICIONANDO ID NO BOTÃO--------------
+  
+
+  tagBtn.setAttribute("id", id)
+  
+  
+ //--------ADICIONANDO CLASSE NAS TAG's----------
   tagLi.classList.add("card")
   tagPTag.classList.add("tag")
   tagH3.classList.add("nameItem")
   tagPDescription.classList.add("description")
   tagPValue.classList.add("value")
-  tagBtn.classList.add("comprar")
+  
 
 
   tagLi.appendChild(tagImg)
