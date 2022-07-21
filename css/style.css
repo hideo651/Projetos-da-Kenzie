@@ -164,6 +164,7 @@ img {
     align-items: center;
     justify-content: center;
     
+    
 }
 
 .card button{
@@ -211,11 +212,6 @@ input{
     
 }
 
-/* .carrinhoTitulo h2{
-    color: #FFFFFF;
-    background-color: #37268C;
-
-} */
 
 .carrinho ul {
     display: flex;
@@ -260,111 +256,19 @@ input{
 }
 
 .infoValor li{
-    /* background-color: red; */
-    display: flex;
+     display: flex;
     justify-content: flex-end;
     margin-right: 14px;
-}
-
-
-
-
-
-/* * {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-}
-
-section{
-    margin: 20px auto;
-    background-color: purple;
-    
+    margin-top: 25px;
     
 }
 
 
 
-.cabeçalho {
-    max-width: 1200px;
-    height: 70px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    background-color: goldenrod;
-    justify-content: space-between;
-}
 
 
 
-.cabeçalho-segundo{
-    display: flex;
-    align-items: center;
-    background-color: green;
-}
-
-.cabeçalho-terceiro {
-    background-color: red;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    
-    
-}
-
-main {
-
-    flex: 3;
-
-}
-
-aside{
-    flex: 1;
-}
-
-img {
-    width: 250px;
-    height: 150px;
-    background-color: #F5F5F5;
-}
-
-
-
-.compras{
-    display: flex;
-    padding: 60px 115px;
-    justify-content: space-between;
-    gap: 30px;
-
-}
-
-
-
-
-.produtos{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.card {
-    width: 290px;
-    height: 400px;
-    
-} */
-
-/* .tag{
-    width: 70px;
-    height: 24px;
-    background-color: #2E245E;
-    color: aliceblue;
-    display: flex;
-    align-items: center;
-    
-} */
-
-
+/* ------------------------------------------------------ */
 
 
 

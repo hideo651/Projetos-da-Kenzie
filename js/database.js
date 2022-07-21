@@ -64,49 +64,25 @@ const data = [
 ];
 
 
-//----------------------CAPTURANDO EVENTO-----------------
-
-let btnVitrine = document.querySelector(".produtos")
-let carrinho   = document.querySelector(".carrinho ul")
-
-btnVitrine.addEventListener("click", adicionarCarrinho)
-
-console.log(btnVitrine);
-
-function adicionarCarrinho(event){
-  
-  let checkBtn = event.target
-  if (checkBtn.tagName == "BUTTON"){
-   
-      
-      let produto = checkBtn.closest("li").cloneNode(true)
-      console.log(produto);
-      carrinho.appendChild(produto)
-  }
-}
-
-
-
-
 
 
 //---------------ACESSANDO OS PRODUTOS-------------------
+let secaoCarrinho   = document.querySelector(".carrinho ul")
+let cardProduto     = document.querySelector(".produtos")
 
-let cardProduto = document.querySelector(".produtos")
-
-function listarProduto (item){
+function listarProduto (item, secao){
   for (let i = 0; i < item.length; i++){
     // console.log(item[i]);
     let produto = item[i]
 
     let card = criarCardProduto(produto)
-    cardProduto.appendChild(card)
+    secao.appendChild(card)
 
     
   }
 }
 
-listarProduto (data)
+listarProduto (data, cardProduto)
 
 
 //-------------------CRIANDO AS <li> DINAMICAMENTE----------------------
@@ -120,7 +96,7 @@ function criarCardProduto (item){
   let value       = item.value
   let tag         = item.tag
 
-  console.log(id);
+  // console.log(id);
 
   let tagLi           = document.createElement("li")
   let tagImg          = document.createElement("img")
@@ -164,28 +140,89 @@ function criarCardProduto (item){
   tagLi.appendChild(tagBtn)
   
 
-
-  /* <li class="card">
-      <img src="./img/camiseta_preta.svg" alt="camiseta preta">
-      <p class="tag">Camiseta</p>
-      <h3 class="nameItem">T-Shirt</h3>
-      <p class="description">Esta t-shirt é imprescindível no seu guarda-roupa, combinando o caimento intemporal de...</p>
-      <p class="value">R$ 100</p>
-      <button><strong>Adicionar ao carrinho</strong></button>
-</li> */
-
-  // console.log(tagLi);
-  // console.log(tagImg);
-  // console.log(tagPTag);
-  // console.log(tagPDescription);
-  // console.log(tagPValue);
-  // console.log(tagH3);
-  // console.log(tagBtn );
-  // console.log("-----------------------------");
-
   return tagLi
 
 
 }
+
+cardProduto.addEventListener("click", interceptarCompra)
+
+
+
+let carrinhoCompras = []
+function interceptarCompra(event){
+  
+  let btnComprar = event.target
+  if (btnComprar.tagName == "BUTTON"){
+   
+      let idProduto = btnComprar.id
+      
+      let produto = data.find(function(produto){
+        if (produto.id == idProduto){
+          return produto 
+        }
+      })  
+      adicionarCarrinho(produto)
+  } 
+}
+
+
+
+
+
+
+
+
+
+
+
+function adicionarCarrinho (produto){
+  carrinhoCompras.push(produto)
+  listarProduto(carrinhoCompras, secaoCarrinho )
+
+  addInfo(carrinhoCompras)
+
+  function addInfo (item){
+    
+    function somaTotal (){
+      let total = 0
+      for (i = 0; i < item.length; i++){
+          total += item[i].value
+          
+      }return total
+  }
+  
+  let vitrineInfo = document.querySelector(".valor")
+  vitrineInfo.innerHTML = ""
+
+
+
+    let quantidade = item.length
+  
+  
+    let tagUl            = document.createElement("ul")
+    let tagValueLi       = document.createElement("li")
+    let tagQuantidadeLi  = document.createElement("li")
+  
+    tagUl.classList.add("infoValor")
+
+
+    tagValueLi.innerText      = `${somaTotal()}`
+    tagQuantidadeLi.innerText = quantidade
+  
+    tagUl.appendChild(tagQuantidadeLi)
+    tagUl.appendChild(tagValueLi)
+
+    vitrineInfo.appendChild(tagUl)
+  
+    console.log(tagUl);
+    console.log(tagValueLi);
+    console.log(tagQuantidadeLi);
+    
+  }
+  
+
+}
+
 
 
