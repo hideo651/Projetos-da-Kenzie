@@ -38,9 +38,20 @@ body {
     /* background-color: red; */
     display: flex;
     align-items: center;
-    gap: 28px;
-    margin: 0;
+    gap: 20px;
+    padding-left: 0 auto;
+    
+    
+    
    
+}
+
+.cabeçalho-terceiro li{
+
+    padding: 0;
+    
+    
+    
 }
 
 
@@ -96,7 +107,7 @@ aside{
 }
 
 .nameItem {
-    height: 40px;
+    /* height: 40px; */
 }
 
 .produtos{
@@ -106,14 +117,32 @@ aside{
 
 }
 
+
+
 .card {
     width: 270px;
     height: 400px;
     border: #F5F5F5 solid;
     margin-bottom: 15px;
+    /* background-color: red;
+         */
+}
+
+.cardDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* background-color: blue; */
     
-    
-        
+}
+
+.cardDiv button{
+    width: 140px;
+}
+
+
+.card p h3 button{
+    margin-bottom: 15px;
 }
 
 .card:hover{
@@ -123,7 +152,7 @@ aside{
 }
 
 .card button {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-left: 15px;
     font-weight: bold;
 }
@@ -135,7 +164,7 @@ aside{
 }
 
 .card p {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-left: 15px;
     
 }
@@ -143,7 +172,7 @@ aside{
 
 
 .card h3{
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-left: 15px;
 }
 
@@ -219,7 +248,7 @@ input{
     align-items: center;
     flex-direction: column;
     max-width: 0 auto;
-    height: 214px;
+    height: 240px;
     overflow-y: scroll;
     background-color: #F5F5F5;
 }
@@ -269,9 +298,54 @@ input{
 
 
 /* ------------------------------------------------------ */
+.carrinho ul li .description{
+    display: none;
+}
+
+.carrinho ul li .tag{
+    display: none;
+}
+
+.carrinho ul li img{
+    width: 88px;
+    height: 67px;
+    margin-left: 14px;
+    margin-top: 20px;
+    top: 12px;
+    
+}
+
+.carrinho ul li .div{
+    background-color: blueviolet;
+    display: flex;
+    
+    
+}
+
+
+
+
+.carrinho ul li{
+    display: flex;
+    /* background-color: pink; */
+}
 
 
 
 
 
 
+
+
+/* display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: blue; */
+
+
+
+
+    
+/* element.style {
+    margin-top: 20px;
+} */

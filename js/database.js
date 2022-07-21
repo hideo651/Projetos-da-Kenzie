@@ -67,7 +67,7 @@ const data = [
 
 
 //---------------ACESSANDO OS PRODUTOS-------------------
-let secaoCarrinho   = document.querySelector(".carrinho ul")
+let secaoCarrinho   = document.querySelector(".carrinhoCompras")
 let cardProduto     = document.querySelector(".produtos")
 
 function listarProduto (item, secao){
@@ -105,6 +105,7 @@ function criarCardProduto (item){
   let tagPValue       = document.createElement("p")
   let tagH3           = document.createElement("h3")
   let tagBtn          = document.createElement("button")
+  let tagDiv          = document.createElement("div")
   
 
   tagImg.src                  = `${img}`
@@ -114,6 +115,16 @@ function criarCardProduto (item){
   tagPValue.innerText         = `R$ ${value}`
   tagH3.innerText             = nameItem
   tagBtn.innerText            = "Adicionar ao carrinho"
+
+
+
+
+
+  tagBtn.addEventListener("click",function(event){
+    interceptarCompra(event.target.id-1)
+  })
+
+  
 
 
 
@@ -129,15 +140,18 @@ function criarCardProduto (item){
   tagH3.classList.add("nameItem")
   tagPDescription.classList.add("description")
   tagPValue.classList.add("value")
-  
+  tagDiv.classList.add("cardDiv")
 
 
   tagLi.appendChild(tagImg)
-  tagLi.appendChild(tagPTag)
-  tagLi.appendChild(tagH3)
-  tagLi.appendChild(tagPDescription)
-  tagLi.appendChild(tagPValue)
-  tagLi.appendChild(tagBtn)
+  tagLi.appendChild(tagDiv)
+  tagDiv.appendChild(tagPTag)
+  tagDiv.appendChild(tagH3)
+  tagDiv.appendChild(tagPDescription)
+  tagDiv.appendChild(tagPValue)
+  tagDiv.appendChild(tagBtn)
+
+  
   
 
   return tagLi
@@ -145,84 +159,201 @@ function criarCardProduto (item){
 
 }
 
-cardProduto.addEventListener("click", interceptarCompra)
+// cardProduto.addEventListener("click", interceptarCompra)
 
 
 
 let carrinhoCompras = []
+
 function interceptarCompra(event){
   
-  let btnComprar = event.target
-  if (btnComprar.tagName == "BUTTON"){
+  carrinhoCompras.push(data[event])
+
+  adicionarCarrinho(carrinhoCompras)
+
+
+  // let btnComprar = event.target
+  // if (btnComprar.tagName == "BUTTON"){
    
-      let idProduto = btnComprar.id
+  //     let idProduto = btnComprar.id
       
-      let produto = data.find(function(produto){
-        if (produto.id == idProduto){
-          return produto 
-        }
-      })  
-      adicionarCarrinho(produto)
-  } 
+  //     let produto = data.find(function(produto){
+  //       if (produto.id == idProduto){
+  //         return produto 
+  //       }
+  //     })  
+      // adicionarCarrinho(produto)
+  // } 
+
+ 
 }
 
+//--------REMOVER PRODUTO----------------------------
+
+
+
+
+function capturarId(id){
+  console.log(id);
+
+
+  
+
+  
+}
+
+//----------------------------------------------------
 
 
 
 
 
 
+function adicionarCarrinho (item){
 
+  secaoCarrinho.innerHTML = ""
 
+  for (let i = 0; i < item.length; i++){
 
-
-function adicionarCarrinho (produto){
-  carrinhoCompras.push(produto)
-  listarProduto(carrinhoCompras, secaoCarrinho )
-
-  addInfo(carrinhoCompras)
-
-  function addInfo (item){
+    let id          = item[i].id
+    let img         = item[i].img
+    let nameItem    = item[i].nameItem
+    let description = item[i].description
+    let value       = item[i].value
+    let tag         = item[i].tag
+  
+    // console.log(id);
+  
+    let tagLi           = document.createElement("li")
+    let tagImg          = document.createElement("img")
+    let tagPTag         = document.createElement("p")
+    let tagPDescription = document.createElement("p")
+    let tagPValue       = document.createElement("p")
+    let tagH3           = document.createElement("h3")
+    let tagBtn          = document.createElement("button")
+    let tagDiv          = document.createElement("div")
     
-    function somaTotal (){
-      let total = 0
-      for (i = 0; i < item.length; i++){
-          total += item[i].value
+  
+    tagImg.src                  = `${img}`
+    tagImg.alt                  = tag
+    tagPTag.innerText           = tag
+    tagPDescription.innerText   = description
+    tagPValue.innerText         = `R$ ${value}`
+    tagH3.innerText             = nameItem
+    tagBtn.innerText            = "Remover do carrinho"
+  
+  
+  
+  
+  
+    tagBtn.addEventListener("click",function(event){
+      removendoProduto(i)
+    })
+  
+    
+  
+  
+  
+  //---------ADICIONANDO ID NO BOTÃO--------------
+    
+  
+    tagBtn.setAttribute("id", id)
+    
+    
+   //--------ADICIONANDO CLASSE NAS TAG's----------
+    tagLi.classList.add("card")
+    tagPTag.classList.add("tag")
+    tagH3.classList.add("nameItem")
+    tagPDescription.classList.add("description")
+    tagPValue.classList.add("value")
+    tagDiv.classList.add("cardDiv")
+  
+  
+    tagLi.appendChild(tagImg)
+    tagLi.appendChild(tagDiv)
+    tagDiv.appendChild(tagPTag)
+    tagDiv.appendChild(tagH3)
+    tagDiv.appendChild(tagPDescription)
+    tagDiv.appendChild(tagPValue)
+    tagDiv.appendChild(tagBtn)
+    
+    secaoCarrinho.appendChild(tagLi)
+  
+    
+
+  }
+  // carrinhoCompras.push(produto)
+  // listarProduto(carrinhoCompras, secaoCarrinho )
+
+  // addInfo(carrinhoCompras)
+
+  // function addInfo (item){
+    
+  //   function somaTotal (){
+  //     let total = 0
+  //     for (i = 0; i < item.length; i++){
+  //         total += item[i].value
           
-      }return total
-  }
+  //     }return total
+  // }
   
-  let vitrineInfo = document.querySelector(".valor")
-  vitrineInfo.innerHTML = ""
+  // let vitrineInfo = document.querySelector(".valor")
+  // vitrineInfo.innerHTML = ""
 
 
 
-    let quantidade = item.length
+    // let quantidade = item.length
   
   
-    let tagUl            = document.createElement("ul")
-    let tagValueLi       = document.createElement("li")
-    let tagQuantidadeLi  = document.createElement("li")
+    // let tagUl            = document.createElement("ul")
+    // let tagValueLi       = document.createElement("li")
+    // let tagQuantidadeLi  = document.createElement("li")
   
-    tagUl.classList.add("infoValor")
+    // tagUl.classList.add("infoValor")
 
 
-    tagValueLi.innerText      = `${somaTotal()}`
-    tagQuantidadeLi.innerText = quantidade
+    // tagValueLi.innerText      = `${somaTotal()}`
+    // tagQuantidadeLi.innerText = quantidade
   
-    tagUl.appendChild(tagQuantidadeLi)
-    tagUl.appendChild(tagValueLi)
+    // tagUl.appendChild(tagQuantidadeLi)
+    // tagUl.appendChild(tagValueLi)
 
-    vitrineInfo.appendChild(tagUl)
+    // vitrineInfo.appendChild(tagUl)
   
-    console.log(tagUl);
-    console.log(tagValueLi);
-    console.log(tagQuantidadeLi);
+    // console.log(tagUl);
+    // console.log(tagValueLi);
+    // console.log(tagQuantidadeLi);
     
-  }
+
+  
   
 
 }
 
+
+//---------------------------------------------------------------
+function removendoProduto(produto){
+  carrinhoCompras.splice(produto,1)
+
+  adicionarCarrinho(carrinhoCompras)
+
+}
+
+
+
+
+// addInfo(carrinhoCompras)
+
+// function addInfo (item){
+  
+
+// }
+// function somaTotal (){
+//   let total = 0
+//   for (i = 0; i < item.length; i++){
+//       total += item[i].value
+      
+//   }return total
+// }
 
 
